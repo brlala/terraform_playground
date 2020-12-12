@@ -44,6 +44,14 @@ terraform plan -out out.terraform: changes will be saved in `out.terraform` file
 terraform apply: wrapper for plan, out then remove
 terraform apply `out.terraform`: apply the changes from the file
 
+# output
+output "ip": {aws_instance.public_ip}: use to output information we want from the provisioner/resource 
+
+# provisioner
+local-exec: run commands locally
+remote-exec: run commands on instance
+file: upload a file to the instance
+
 # Common procedures:
 #### Syncing Time: Amazon will not create a resource if the time difference is too much
 ```
