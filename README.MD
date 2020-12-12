@@ -43,3 +43,9 @@ terraform plan:
 terraform plan -out out.terraform: changes will be saved in `out.terraform` file
 terraform apply: wrapper for plan, out then remove
 terraform apply `out.terraform`: apply the changes from the file
+
+# Common procedures:
+#### Syncing Time: Amazon will not create a resource if the time difference is too much
+```
+sudo apt install ntpdate && sudo ntpdate ntp.ubuntu.com
+```
