@@ -232,3 +232,4 @@ $RECYCLE.BIN/
 # End of https://www.toptal.com/developers/gitignore/api/jetbrains,windows,pycharm,terraform
 
 .env
+*/terraform.tfvars
