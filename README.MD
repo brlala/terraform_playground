@@ -21,8 +21,8 @@ demo-6 | Modules
 demo-7 | AWS VPC/NAT/Route Table/EIP/Internet Gateway/Public Private Subnet
 demo-8 | EC2 instance within VPC with securitygroup
 demo-9 | EC2 instance with EBS volumes
-demo-10 | Userdata and cloudinit
-demo-11 | Route53 (DNS)
+demo-10 | Userdata and cloudinit, running scripts on startup/template
+demo-11 | Route53 (DNS)/Elastic IP/Static IPs
 demo-12 | RDS
 demo-13 | IAM
 demo-14 | IAM Roles with S3 bucket
@@ -72,4 +72,26 @@ sudo apt install ntpdate && sudo ntpdate ntp.ubuntu.com
 
 #### Changing hostname at cmd
 ```https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/set-hostname.html
+```
+
+#### change the root block device of instance
+```
+in resource "aws_instance", add
+root_block_device {
+  volume_size=16
+  volume_type="gp2"
+  delete_on_termination=true 
+}
+```
+
+#### mounting EBS volume
+```
+df -h  # check storage
+mkfs.ext4 /dev/<name of volume>  # make a filesystem on the volume
+mkdir data
+mount /dev/<name of volume> /data  # adding the volume to linux
+vim /etc/fstab  # adding the volume as permanent so it auto attach on instance reboot
+add the line '/dev/<name of volume> /data ext4 defaults 0 0'
+----
+
 ```
