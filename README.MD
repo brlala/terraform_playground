@@ -18,7 +18,7 @@ demo-3 | Executing script locally
 demo-4 | Outputting
 demo-5 | Data Source
 demo-6 | Modules
-demo-7 | AWS VPC
+demo-7 | AWS VPC/NAT/Route Table/EIP/Internet Gateway/Public Private Subnet
 demo-8 | EC2 instance within VPC with securitygroup
 demo-9 | EC2 instance with EBS volumes
 demo-10 | Userdata and cloudinit
@@ -39,10 +39,19 @@ docker-demo-3 | Using ECR/ECS with Jenkins in a complete workflow
 module-demo | Using ECS + ALB in 4 modules to show how developing terraform modules work
 
 # Summary of commands
-terraform plan:
-terraform plan -out out.terraform: changes will be saved in `out.terraform` file
-terraform apply: wrapper for plan, out then remove
-terraform apply `out.terraform`: apply the changes from the file
+terraform plan:  
+terraform plan -out out.terraform: changes will be saved in `out.terraform` file  
+terraform apply: wrapper for plan, out then remove  
+terraform apply `out.terraform`: apply the changes from the file  
+terraform fmt: format the file to look pretty
+terraform get: get and update the modules
+terraform graph: create a visual representation
+import aws_instance i-xxxx: import from already existing architecture
+teraform push: run terraform from a centralized server
+terraform refresh: refresh remote state
+terraform remote: configure remote storage
+terraform show: show human readable output from a state
+terraform state: use this command for advance state management
 
 # output
 output "ip": {aws_instance.public_ip}: use to output information we want from the provisioner/resource 
@@ -52,8 +61,15 @@ local-exec: run commands locally
 remote-exec: run commands on instance
 file: upload a file to the instance
 
+# module
+source: source to get terraform module from a remote website, will look for local folder if string starts with `./`
+
 # Common procedures:
 #### Syncing Time: Amazon will not create a resource if the time difference is too much
 ```
 sudo apt install ntpdate && sudo ntpdate ntp.ubuntu.com
+```
+
+#### Changing hostname at cmd
+```https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/set-hostname.html
 ```
